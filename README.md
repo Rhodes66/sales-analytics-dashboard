@@ -6,6 +6,32 @@ Sales Analytics Dashboard 是一个模拟企业销售运营场景的数据分析
 
 该项目定位为企业业务场景模拟项目，重点展示数据分析后台的业务理解、接口设计、数据处理、指标统计、可视化展示和 AI 辅助分析能力，适合作为软件工程、信息技术管理、数据分析和 AI 应用方向的作品集项目。
 
+## 项目截图
+
+### 登录页面
+![登录页面](docs/login-page.png)
+
+### 销售数据看板
+![销售数据看板](docs/dashboard.png)
+
+### 月度销售趋势
+![月度销售趋势](docs/sales-trend.png)
+
+### 品类销售排行
+![品类销售排行](docs/category-ranking.png)
+
+### 区域销售排行
+![区域销售排行](docs/region-ranking.png)
+
+### 订单明细表
+![订单明细表](docs/order-table.png)
+
+### CSV 数据导入
+![CSV 数据导入](docs/csv-import.png)
+
+### AI 经营分析报告
+![AI 经营分析报告](docs/ai-report.png)
+
 ## 技术栈
 
 前端：HTML、CSS、JavaScript
