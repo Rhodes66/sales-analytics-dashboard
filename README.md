@@ -27,10 +27,10 @@ Sales Analytics Dashboard 是一个模拟企业销售运营场景的数据分析
 ![订单明细表](docs/order-table.png)
 
 ### CSV 数据导入
-![CSV 数据导入](docs/csv-import.png)
+![CSV 数据导入](docs/csv-import.png.png)
 
 ### AI 经营分析报告
-![AI 经营分析报告](docs/ai-report.png)
+![AI 经营分析报告](docs/ai-report.png.png)
 
 ## 技术栈
 
