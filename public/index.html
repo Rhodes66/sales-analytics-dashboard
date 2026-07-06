@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sales Analytics Dashboard</title>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <main id="loginView" class="login-layout">
+    <section class="hero-card">
+      <span class="eyebrow">ENTERPRISE DATA ANALYTICS PROJECT</span>
+      <h1>企业销售数据分析后台</h1>
+      <p>
+        模拟企业销售运营数据分析场景，支持 KPI 指标统计、趋势分析、区域与品类表现分析、订单明细筛选、CSV 数据导入和 AI 经营报告生成。
+      </p>
+      <div class="feature-grid">
+        <div><strong>KPI</strong><span>销售指标</span></div>
+        <div><strong>Trend</strong><span>趋势分析</span></div>
+        <div><strong>CSV</strong><span>数据导入</span></div>
+        <div><strong>AI Report</strong><span>经营建议</span></div>
+      </div>
+      <div class="demo-box">
+        <h3>演示账号</h3>
+        <p>销售经理：admin@example.com / admin123</p>
+        <p>数据分析师：analyst@example.com / analyst123</p>
+        <p>查看用户：viewer@example.com / viewer123</p>
+      </div>
+    </section>
+
+    <section class="login-card">
+      <h2>登录系统</h2>
+      <p>使用演示账号进入销售分析后台。</p>
+      <label>邮箱</label>
+      <input id="email" type="email" value="admin@example.com" />
+      <label>密码</label>
+      <input id="password" type="password" value="admin123" />
+      <button id="loginButton" class="primary-button">登录系统</button>
+      <p id="loginError" class="error-text"></p>
+    </section>
+  </main>
+
+  <main id="appView" class="app-layout hidden">
+    <aside class="sidebar">
+      <div class="brand">
+        <span class="logo">SA</span>
+        <div>
+          <strong>Sales Analytics</strong>
+          <small>Enterprise Dashboard</small>
+        </div>
+      </div>
+
+      <nav>
+        <button class="nav-item active" data-section="dashboardSection">数据看板</button>
+        <button class="nav-item" data-section="ordersSection">订单明细</button>
+        <button class="nav-item" data-section="importSection">CSV 导入</button>
+        <button class="nav-item" data-section="reportSection">AI 经营报告</button>
+      </nav>
+
+      <div class="user-panel">
+        <span id="userName">User</span>
+        <small id="userRole">role</small>
+        <button id="logoutButton" class="ghost-button">退出登录</button>
+      </div>
+    </aside>
+
+    <section class="content">
+      <header class="topbar">
+        <div>
+          <span class="eyebrow">Sales Data Center</span>
+          <h2>销售运营数据分析后台</h2>
+        </div>
+        <div class="header-actions">
+          <button id="refreshButton" class="secondary-button">刷新数据</button>
+          <button id="aiReportQuickButton" class="primary-button">生成 AI 报告</button>
+        </div>
+      </header>
+
+      <section class="filters-card">
+        <div class="filter-item">
+          <label>开始日期</label>
+          <input id="dateFrom" type="date" />
+        </div>
+        <div class="filter-item">
+          <label>结束日期</label>
+          <input id="dateTo" type="date" />
+        </div>
+        <div class="filter-item">
+          <label>区域</label>
+          <select id="regionFilter"></select>
+        </div>
+        <div class="filter-item">
+          <label>品类</label>
+          <select id="categoryFilter"></select>
+        </div>
+        <div class="filter-item">
+          <label>渠道</label>
+          <select id="channelFilter"></select>
+        </div>
+        <div class="filter-item">
+          <label>订单状态</label>
+          <select id="statusFilter"></select>
+        </div>
+        <button id="applyFilterButton" class="primary-button">应用筛选</button>
+      </section>
+
+      <section id="dashboardSection" class="section active-section">
+        <div class="kpi-grid">
+          <article class="kpi-card">
+            <span>总销售额</span>
+            <strong id="totalRevenue">-</strong>
+            <small>Completed orders revenue</small>
+          </article>
+          <article class="kpi-card">
+            <span>总利润</span>
+            <strong id="totalProfit">-</strong>
+            <small>Profit after discount/refund</small>
+          </article>
+          <article class="kpi-card">
+            <span>订单数量</span>
+            <strong id="totalOrders">-</strong>
+            <small>Filtered order count</small>
+          </article>
+          <article class="kpi-card">
+            <span>利润率</span>
+            <strong id="profitMargin">-</strong>
+            <small>Profit / Revenue</small>
+          </article>
+        </div>
+
+        <div class="chart-grid">
+          <article class="panel large-panel">
+            <div class="panel-header">
+              <h3>月度销售趋势</h3>
+              <span>Revenue / Profit</span>
+            </div>
+            <div id="trendChart" class="line-chart"></div>
+          </article>
+          <article class="panel">
+            <div class="panel-header">
+              <h3>品类销售表现</h3>
+              <span>Category Ranking</span>
+            </div>
+            <div id="categoryChart" class="bar-chart"></div>
+          </article>
+        </div>
+
+        <div class="chart-grid">
+          <article class="panel">
+            <div class="panel-header">
+              <h3>区域收入排行</h3>
+              <span>Regional Revenue</span>
+            </div>
+            <div id="regionChart" class="bar-chart"></div>
+          </article>
+          <article class="panel">
+            <div class="panel-header">
+              <h3>数据质量检查</h3>
+              <span>Data Health</span>
+            </div>
+            <div id="dataHealth" class="health-grid"></div>
+          </article>
+        </div>
+      </section>
+
+      <section id="ordersSection" class="section">
+        <article class="panel">
+          <div class="panel-header">
+            <h3>订单明细</h3>
+            <span id="orderTotal">-</span>
+          </div>
+          <div class="table-wrapper">
+            <table>
+              <thead>
+                <tr>
+                  <th>订单号</th>
+                  <th>日期</th>
+                  <th>区域</th>
+                  <th>品类</th>
+                  <th>产品</th>
+                  <th>销售额</th>
+                  <th>利润</th>
+                  <th>状态</th>
+                </tr>
+              </thead>
+              <tbody id="ordersTable"></tbody>
+            </table>
+          </div>
+        </article>
+      </section>
+
+      <section id="importSection" class="section">
+        <article class="panel">
+          <div class="panel-header">
+            <h3>CSV 数据导入</h3>
+            <span>管理员 / 数据分析师可用</span>
+          </div>
+          <p class="muted-text">上传符合字段要求的 CSV 文件后，系统会将数据追加到本地 sales.csv 文件中，并刷新看板。</p>
+          <div class="upload-box">
+            <input id="csvFileInput" type="file" accept=".csv" />
+            <button id="uploadCsvButton" class="primary-button">导入 CSV</button>
+          </div>
+          <pre id="importResult" class="result-box">等待上传 CSV 文件...</pre>
+        </article>
+      </section>
+
+      <section id="reportSection" class="section">
+        <article class="panel">
+          <div class="panel-header">
+            <h3>AI 经营分析报告</h3>
+            <span id="reportMode">Local / AI</span>
+          </div>
+          <p class="muted-text">如果未配置 DeepSeek API Key，系统会自动使用本地规则生成经营分析建议，保证项目可以稳定演示。</p>
+          <button id="generateReportButton" class="primary-button">生成报告</button>
+          <div id="reportList" class="report-list"></div>
+        </article>
+      </section>
+    </section>
+  </main>
+
+  <script src="/app.js"></script>
+</body>
+</html>
