@@ -44,12 +44,6 @@ CSV 销售数据导入
 
 AI 经营分析报告生成
 
-## 项目截图
-
-> 上传截图后，可在这里加入图片，例如：
->
-> ![Dashboard](docs/screenshots/dashboard.png)
-
 ## 运行方式
 
 ### 1. 安装环境
